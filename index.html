@@ -8,6 +8,27 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <style>
+        .case-img {
+          position: absolute;    
+          left: 0;
+          height: 200px;
+          background: #FFFFFF;
+        }
+
+        .case-container {
+          height: 200px;
+          margin-bottom: 50px;
+          margin-right: 50px;
+        }
+
+        .case-text {
+          position: absolute;
+          left: 200px;
+          margin-left: 30px;
+        }
+
+    </style>
   </head>
 
   <!-- cover -->
@@ -35,6 +56,7 @@
           <p class="text-left"> 
           Text-driven in-game 3D character auto-customization systems eliminate the complicated process of manipulating intricate character control parameters. However, current methods are limited by their single-round generation, incapable of further editing and fine-grained modification. In this paper, we propose an Interactive Character Editing framework (ICE) to achieve a multi-round dialogue-based refinement process. In a nutshell, our ICE offers a more user-friendly way to enable players to convey creative ideas iteratively while ensuring that created characters align with the expectations of players. Specifically, we propose an Instruction Parsing Module (IPM) that utilizes large language models (LLMs) to parse multi-round dialogues into clear editing instruction prompts in each round. To reliably and swiftly modify character control parameters at a fine-grained level, we propose a Semantic-guided Low-dimension Parameter Solver (SLPS) that edits character control parameters according to prompts in a zero-shot manner. Our SLPS first localizes the character control parameters related to the fine-grained modification, and then optimizes the corresponding parameters in a low-dimension space to avoid unrealistic results. Extensive experimental results demonstrate the effectiveness of our proposed ICE for in-game character creation and the superior editing performance of ICE.
           </p>
+          <img style="width: 90%;" src="framework.png"/>
         </div>
       </div>
     </div>
@@ -57,6 +79,394 @@
     </div>
   </section>
   <br>
+
+<section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+            <h3>Cases</h3>
+            <hr style="margin-top:0px">
+            <div id="cases"></div>
+            <!-- <div class="row">
+              <div class="col-xl-6 text-center">
+                <div class="case-container">
+                  <img src="cases/case-1/1.png" class="case-img" />
+                  <img src="cases/case-1/2.png" class="case-img" />
+                  <img src="cases/case-1/3.png" class="case-img" />
+                  <img src="cases/case-1/4.png" class="case-img" />
+                  <div class="case-text text-left"></div>
+                </div>
+              </div> 
+              <div class="col-xl-6 text-center"> 
+                <div class="case-container">
+                  <img src="cases/case-2/1.png" class="case-img" />
+                  <img src="cases/case-2/2.png" class="case-img" />
+                  <img src="cases/case-2/3.png" class="case-img" />
+                  <img src="cases/case-2/4.png" class="case-img" />
+                  <div class="case-text text-left"></div>
+                </div>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+
+
+
+  <script>
+        var caseList = [
+          {
+            "caseNo": 9,
+            "dialogue": [
+              [
+                ["User", "I want to create a character who is a secret agent."],
+                ["System", "Done."],
+              ],
+              [
+                ["User", "She doesn't look competent enough. Do you think it has to do with the hairstyle?"],
+                ["System", "How about trying a short, neat hairstyle?"],
+                ["User", "No, short haircut is not my preference. A ponytail hairstyle would be better."],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "Also, I think this character should be a highly experienced agent, often exposed to the whether. Make her skin darker."],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "Perfect. But now I have a new idea. I want to adjust the character as a powerful warrior. What can we do?"],
+                ["System", "We can adjust the face shape to be more angular and defined."],
+                ["User", "Good idea! I think her eyes should also be bigger. Please apply these modifications."],
+                ["System", "OK."],
+              ]
+            ]
+          },
+          {
+            "caseNo": 1,
+            "dialogue": [
+              [
+                ["User", "Please create a tough guy for me, muscular with a bit of fat."],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "I think his eyes are a bit too big, and his eyebrows aren't firm and imposing enough. Please adjust them."],
+                ["System", "Okay."],
+              ],
+              [
+                ["User", "I've changed my mind, let's make him leaner, to look more efficient."],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "I think his skin is a bit too good now."],
+                ["System", "Okay, I've made his skin less perfect, making him look more realistic. What do you think?"],
+                ["User", "Very good, this is exactly the tough guy image I wanted."],
+                ["System", "Glad you like it."],
+              ]
+            ]
+          },
+          {
+            "caseNo": 2,
+            "dialogue": [
+              [
+                ["User", "Create an avant-garde male star, with heavy makeup."],
+                ["System", "Okay."],
+              ],
+              [
+                ["User", "The eyebrows look too thin. Make them thicker for a bold and prominent look."],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "That's better. Let me think about what else to modify... I want him to have fair skin, which contrasts strongly with the heavy makeup."],
+                ["System", "Okay."],
+              ],
+              [
+                ["User", "Looks pretty good. But now I want him to look gentler. Could you change the hairstyle for me?"],
+                ["System", "How about this one?"],
+                ["User", "Nice, thank you for your effort."],
+                ["System", "My pleasure."],
+              ]
+            ]
+          },
+          {
+            "caseNo": 3,
+            "dialogue": [
+              [
+                ["User", "Please create a female warrior with a gaze as sharp as a knife."],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "The face is a bit too sharp, it doesn't look determined and brave enough. Let's change the shape of the face."],
+                ["System", "I have adjusted the face shape to a square shape. It should look more determined. What do you think?"],
+              ],
+              [
+                ["User", "It's a good suggestion, but the modification is too exaggerated. It looks a bit ugly. I think just a slight modification would be enough."],
+                ["System", "I apologize for that. I have adjusted the face shape to a more natural look. How about this?"],
+              ],
+              [
+                ["User", "This looks better. Now let's change the color of the pupils. I think they should be purple, to make them look very sharp."],
+                ["System", "Alright."],
+              ]
+            ]
+          },
+          {
+            "caseNo": 4,
+            "dialogue": [
+              [
+                ["User", "I haven't decided what kind of character to create yet. Create a cute girl for me."],
+                ["System", "Sure."],
+              ],
+              [
+                ["User", "Let me think… Let's change the shape of the mouth. Make it narrow with thick lips, like plump cherries."],
+                ["System", "Okay."],
+              ],
+              [
+                ["User", "I have an idea! I want to create a gothic girl! What else do you think is missing?"],
+                ["System", "Gothic girls often have black eyeshadow and eyeliner, as well as dark lipstick. What do you think about that?"],
+                ["User", "I think that's great! Let's go with that!"],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "Let's find a hairstyle that suits her."],
+                ["System", "Sure, we can try long straight black hair. What do you think?"],
+                ["User", "Great! I like her."],
+              ]
+            ]
+          },
+          {
+            "caseNo": 5,
+            "dialogue": [
+              [
+                ["User", "I'm envisioning a dominant  commander character."],
+                ["System", "Sure."],
+              ],
+              [
+                ["User", "Hmm, it's not quite what I had in mind. I'm actually picturing a more mature-looking commander. How about adding a stubble beard?"],
+                ["System", "Got it."],
+              ],
+              [
+                ["User", "Perfect! And for a battle-hardened look, let's go with dark, sun-tanned skin."],
+                ["System", "I've made the update."],
+              ],
+              [
+                ["User", "Nice, but let's make the face rounder."],
+                ["System", "Done."],
+              ]
+            ]
+          },
+          // {
+          //   "caseNo": 6,
+          //   "dialogue": [
+          //     [
+          //       ["User", "I haven't decided what kind of character to create. Please create a gentle woman for me to start with."],
+          //       ["System", "Sure."],
+          //     ],
+          //     [
+          //       ["User", "I would like her to have a more eye-catching appearance. Please add some makeup for me."],
+          //       ["System", "Alright."],
+          //     ],
+          //     [
+          //       ["User", "Let's make her lips a bit thicker."],
+          //       ["System", "Understood."],
+          //     ],
+          //     [
+          //       ["User", "I hope she can have a rounder face, as it would make her look even more gentle."],
+          //       ["System", "Got it."],
+          //       ["User", "I think that's about it. Thank you for your cooperation."],
+          //       ["System", "Alright, I believe we've achieved the desired look."],
+          //     ]
+          //   ]
+          // },
+          {
+            "caseNo": 7,
+            "dialogue": [
+              [
+                ["User", "Create a pretty boy character for a game."],
+                ["System", "Done."],
+              ],
+              [
+                ["User", "Make the skin a bit darker to look healthier."],
+                ["System", "Alright."],
+              ],
+              [
+                ["User", "I'm not too fond of this middle-parted hairstyle. Are there other options?"],
+                ["System", "Certainly, we have many other hairstyle options like short, long, curly, straight, etc. What type of hairstyle would you prefer?"],
+                ["User", "I'd like a messy, curly hairstyle."],
+                ["System", "Okay, how does it seem?"],
+              ],
+              [
+                ["User", "Looks good. Finally, let's adjust the face shape. The chin is too pointed and long, it looks a bit odd."],
+                ["System", "Okay."],
+              ]
+            ]
+          },
+          // {
+          //   "caseNo": 8,
+          //   "dialogue": [
+          //     [
+          //       ["User", "Create a lively girl for me."],
+          //       ["System", "Sure."],
+          //     ],
+          //     [
+          //       ["User", "Could you make the skin look more rosy?"],
+          //       ["System", "Of course."],
+          //     ],
+          //     [
+          //       ["User", "The face doesn't look cute enough. Can you make it rounder and chubby?"],
+          //       ["System", "Absolutely."],
+          //     ],
+          //     [
+          //       ["User", "Change the hairstyle to double buns, please."],
+          //       ["System", "Certainly."],
+          //       ["User", "I think it's good now. Let's keep it like this. Thank you."],
+          //       ["System", "I'm delighted that you're satisfied. If there are any other adjustments you'd like, feel free to let me know."],
+          //     ]
+          //   ]
+          // },
+          {
+            "caseNo": 10,
+            "dialogue": [
+              [
+                ["User", "Petite girl with chubby round face."],
+                ["System", "Done."],
+              ],
+              [
+                ["User", "Eyes a little bigger."],
+                ["System", "Adjusting... How do the slightly enlarged eyes look?"],
+              ],
+              [
+                ["User", "Even bigger."],
+                ["System", "Pushing the boundaries a bit more on the eye size. Better?."],
+              ],
+              [
+                ["User", "Yes. Emerald green pupils."],
+                ["System", "Done."],
+              ]
+            ]
+          },
+        ];
+
+        // create dom
+        var casesContainer = document.getElementById('cases');
+        for (var i=0; i < caseList.length; i+=2)
+        {
+          var rowDiv = document.createElement('div');
+          rowDiv.classList.add('row');
+
+          for (var k=0; k < 2; k++)
+          {
+            var caseInfo = caseList[i+k];
+
+            var colDiv = document.createElement('div');
+            colDiv.classList.add('col-xl-6', 'text-center');
+
+            var caseContainerDiv = document.createElement('div');
+            caseContainerDiv.id = caseInfo.caseNo;
+            caseContainerDiv.classList.add('case-container');
+
+            for (var j = 0; j < 4; j++) {
+              var img = document.createElement('img');
+              img.src = 'cases/case-' + caseInfo.caseNo + '/' + (j + 1) + '.png';
+              img.classList.add('case-img');
+              caseContainerDiv.appendChild(img);
+            }
+
+            var caseTextDiv = document.createElement('div');
+            caseTextDiv.classList.add('case-text', 'text-left');
+            caseContainerDiv.appendChild(caseTextDiv);
+
+            colDiv.appendChild(caseContainerDiv);
+            rowDiv.appendChild(colDiv);
+          }
+
+          casesContainer.appendChild(rowDiv);
+        }
+
+
+        var caseComponents = document.getElementsByClassName('case-container');
+        for (var i = 0; i < caseComponents.length; ++i)
+        {
+          startImageTransition(caseComponents[i], caseList[i].dialogue);
+        }
+        
+        function startImageTransition(caseDom, textList) {
+            var images = caseDom.getElementsByClassName("case-img");
+            var textDisplay = caseDom.getElementsByClassName('case-text')[0];
+        
+            for (var i = 0; i < images.length; ++i) {
+                images[i].style.opacity = (i == 0)? 1: 0;
+                images[i].style.zIndex = images.length - i;
+            }
+        
+            var top = images.length;
+            var cur = 0;
+
+            textDisplay.innerHTML  = renderDialogue(0, textList[0]);
+            textDisplay.style.zIndex = top + 2;
+        
+            setInterval(changeImage, 4000);
+        
+            async function changeImage() {
+        
+                var nextImage = (1 + cur) % images.length;
+                
+                textDisplay.innerHTML  = renderDialogue(nextImage, textList[nextImage]);
+                textDisplay.style.zIndex = top + 2;
+
+                images[cur].style.opacity = 1;
+                images[nextImage].style.opacity = 1;
+
+                images[cur].style.zIndex = top + 1;
+                images[nextImage].style.zIndex = top;
+      
+                await transition();
+                
+                images[cur].style.zIndex = top;
+                images[nextImage].style.zIndex = top + 1;
+        
+                top = top + 1;
+                images[cur].style.opacity = 0;
+                images[nextImage].style.opacity = 1;
+              
+                cur = nextImage;
+            }
+        
+            function transition() {
+                return new Promise(function(resolve, reject) {
+                    var del = 0.01;
+        
+                    var id = setInterval(changeOpacity, 10);
+        
+                    function changeOpacity() {
+                        images[cur].style.opacity -= del;
+                        if (images[cur].style.opacity <= 0) {
+                            clearInterval(id);
+                            resolve();
+                        }
+                    }
+        
+                })
+            }
+        }
+
+        function renderDialogue(roundNum, dialogue)
+        {
+          var renderContent = "";
+
+          renderContent += "<h5>Round " + roundNum + "</h5>";
+
+          for (var i = 0; i < dialogue.length; i++)
+          {
+            var role = dialogue[i][0];
+            var content = dialogue[i][1];
+
+            renderContent += "<b>" + role + ": </b>";
+            renderContent += content + "<br/>";
+          }
+
+          return renderContent;
+        }
+    </script>
 
 </body>
 </html>
